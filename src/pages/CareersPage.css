@@ -1,0 +1,27 @@
+.job-card { cursor: default; }
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+}
+.job-meta {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.job-body {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}

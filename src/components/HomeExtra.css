@@ -1,0 +1,151 @@
+.why-us {
+  padding: 6rem 0;
+  background: var(--bg2);
+}
+.why-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+.why-right { position: relative; }
+.why-img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  height: 420px;
+  display: block;
+  border: 1px solid var(--border);
+}
+.why-floating-card {
+  position: absolute;
+  bottom: -24px;
+  left: -24px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.75rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.floating-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Process */
+.process-section {
+  padding: 6rem 0;
+  background: var(--bg);
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.process-card {
+  position: relative;
+  padding-top: 2rem;
+}
+.process-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Testimonials */
+.testimonials-section {
+  padding: 6rem 0;
+  background: var(--bg2);
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.testi-card {
+  padding: 2.25rem;
+  position: relative;
+}
+.testi-quote-icon {
+  color: var(--accent);
+  opacity: 0.3;
+  margin-bottom: 1.25rem;
+}
+.testi-text {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  font-style: italic;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.testi-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+}
+.testi-stars { display: flex; gap: 3px; }
+
+/* Case Studies Preview */
+.cases-preview {
+  padding: 6rem 0;
+  background: var(--bg);
+}
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.case-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  transition: var(--transition);
+}
+.case-card:hover { transform: translateY(-6px); border-color: var(--border-hover); }
+.case-img {
+  width: 100%; height: 200px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7);
+  transition: var(--transition);
+}
+.case-card:hover .case-img { filter: brightness(0.9); transform: scale(1.03); }
+.case-body { padding: 1.5rem; }
+.case-title { font-family: 'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; margin:0.75rem 0 0.5rem; }
+.case-result { font-size:0.9rem; font-weight:600; }
+.case-hover {
+  padding: 0 1.5rem 1.5rem;
+}
+.btn-sm { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+
+@media (max-width: 1024px) {
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .cases-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .why-inner { grid-template-columns: 1fr; }
+  .why-floating-card { display: none; }
+  .testi-grid, .cases-grid { grid-template-columns: 1fr; }
+}
