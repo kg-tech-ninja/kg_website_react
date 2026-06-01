@@ -100,8 +100,8 @@ const ServicesPage = () => (
           <p className="section-sub" style={{margin:'0 auto 2.5rem'}}>
             From infrastructure to AI — we provide end-to-end technology solutions that scale with your ambitions.
           </p>
-          <Link to="/contact" className="btn btn-primary">
-            Discuss your project <ArrowRight size={16}/>
+          <Link to="/contact" className="btn-wavy">
+            <span>Discuss your project</span> <ArrowRight size={16}/>
           </Link>
         </motion.div>
       </div>
@@ -135,11 +135,11 @@ const ServicesPage = () => (
               ))}
             </div>
             <div style={{display:'flex', gap:'0.75rem', marginTop:'1.5rem', flexWrap:'wrap'}}>
-              <Link to={`/services/${idMap[s.id]}`} className="btn btn-primary" style={{fontSize:'0.875rem'}}>
-                Learn More <ArrowRight size={15}/>
+              <Link to={`/services/${idMap[s.id]}`} className="btn-wavy" style={{fontSize:'0.875rem'}}>
+                <span>Learn More</span> <ArrowRight size={15}/>
               </Link>
               <Link to="/contact" className="btn btn-outline" style={{fontSize:'0.875rem'}}>
-                Get a Quote
+                <span>Get a Quote</span>
               </Link>
             </div>
           </div>

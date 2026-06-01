@@ -120,7 +120,7 @@
   position: relative;
   z-index: 2;
   border-top: 1px solid var(--border);
-  background: rgba(8,12,20,0.8);
+  background: rgba(0,0,0,0.8);
   backdrop-filter: blur(12px);
 }
 .stats-inner {
@@ -148,7 +148,7 @@
   overflow: hidden;
   padding: 0.9rem 0;
   border-top: 1px solid var(--border);
-  background: rgba(13,18,32,0.7);
+  background: rgba(0,0,0,0.7);
   backdrop-filter: blur(8px);
 }
 .ticker-track {

@@ -80,7 +80,7 @@ const CaseStudiesPage = () => (
                 ))}
               </div>
               <Link to="/contact" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>
-                Start a similar project <ArrowRight size={15}/>
+                <span>Start a similar project</span> <ArrowRight size={15}/>
               </Link>
             </div>
           </div>
@@ -93,7 +93,7 @@ const CaseStudiesPage = () => (
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="section-title" style={{ marginBottom: '1rem' }}>Ready to Become Our <span className="gradient-text">Next Success Story?</span></h2>
         <p className="section-sub" style={{ margin: '0 auto 2rem' }}>Let's talk about your project.</p>
-        <Link to="/contact" className="btn btn-primary">Start your project <ArrowRight size={16}/></Link>
+        <Link to="/contact" className="btn-wavy"><span>Start your project</span> <ArrowRight size={16}/></Link>
       </div>
     </div>
   </div>

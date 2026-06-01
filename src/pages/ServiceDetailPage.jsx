@@ -55,8 +55,8 @@ const ServiceDetailPage = () => {
               Why Choose <span className="gradient-text">KG Ops</span> for {service.title}?
             </h2>
             <p className="detail-overview-text">{service.overview}</p>
-            <Link to="/contact" className="btn btn-primary" style={{ background: `linear-gradient(135deg, ${service.color}, ${service.color}bb)`, marginTop: '2rem' }}>
-              Get a Free Consultation <ArrowRight size={16} />
+            <Link to="/contact" className="btn-wavy" style={{ marginTop: '2rem' }}>
+              <span>Get a Free Consultation</span> <ArrowRight size={16} />
             </Link>
           </motion.div>
 
@@ -138,8 +138,8 @@ const ServiceDetailPage = () => {
             <p className="detail-cta-sub">Let's talk about how we can tailor this service for your specific needs and goals.</p>
           </div>
           <div className="detail-cta-actions">
-            <Link to="/contact" className="btn btn-primary">Start a Project <ArrowRight size={16} /></Link>
-            <Link to="/case-studies" className="btn btn-outline">See Our Work</Link>
+            <Link to="/contact" className="btn-wavy"><span>Start a Project</span> <ArrowRight size={16} /></Link>
+            <Link to="/case-studies" className="btn btn-outline"><span>See Our Work</span></Link>
           </div>
         </motion.div>
 

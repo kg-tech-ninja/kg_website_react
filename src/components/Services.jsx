@@ -60,7 +60,7 @@ const ServicesOverview = () => (
 
       <div className="services-cta">
         <Link to="/services" className="btn btn-outline">
-          View all services <ArrowRight size={16}/>
+          <span>View all services</span> <ArrowRight size={16}/>
         </Link>
       </div>
     </div>

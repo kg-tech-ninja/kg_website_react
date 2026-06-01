@@ -72,8 +72,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <Link to="/services" className="btn btn-primary">
-            Explore Services <ArrowRight size={18}/>
+          <Link to="/services" className="btn-wavy">
+            <span>Explore Services</span> <ArrowRight size={18}/>
           </Link>
           {/* <Link to="/case-studies" className="btn btn-outline hero-play">
             <span className="play-ring"><Play size={13} fill="currentColor"/></span>

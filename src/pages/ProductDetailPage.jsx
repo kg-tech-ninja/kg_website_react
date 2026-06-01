@@ -52,10 +52,10 @@ const ProductDetailPage = () => {
             </h2>
             <p className="detail-overview-text">{product.overview}</p>
             <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-primary" style={{ background: `linear-gradient(135deg, ${product.color}, ${product.color}bb)` }}>
-                {product.status === 'Coming Soon' ? 'Join the Waitlist' : 'Start Free Trial'} <ArrowRight size={16} />
+              <Link to="/contact" className="btn-wavy">
+                <span>{product.status === 'Coming Soon' ? 'Join the Waitlist' : 'Start Free Trial'}</span> <ArrowRight size={16} />
               </Link>
-              <Link to="/contact" className="btn btn-outline">Book a Demo</Link>
+              <Link to="/contact" className="btn btn-outline"><span>Book a Demo</span></Link>
             </div>
           </motion.div>
 
@@ -106,11 +106,9 @@ const ProductDetailPage = () => {
                       <li key={j}><CheckCircle size={15} style={{ color: product.color, flexShrink: 0 }} /> {f}</li>
                     ))}
                   </ul>
-                  <Link to="/contact" className="btn"
-                    style={isFeatured
-                      ? { background: `linear-gradient(135deg, ${product.color}, ${product.color}bb)`, color: '#fff', width: '100%', justifyContent: 'center' }
-                      : { background: 'transparent', border: '1px solid var(--border-hover)', width: '100%', justifyContent: 'center', color: 'var(--text)' }}>
-                    {tier.price === 'Custom' ? 'Contact Sales' : 'Get Started'} <ArrowRight size={15} />
+                  <Link to="/contact" className={isFeatured ? "btn-wavy" : "btn btn-outline"}
+                    style={{ width: '100%', justifyContent: 'center' }}>
+                    <span>{tier.price === 'Custom' ? 'Contact Sales' : 'Get Started'}</span> <ArrowRight size={15} />
                   </Link>
                 </motion.div>
               );
@@ -126,8 +124,8 @@ const ProductDetailPage = () => {
             <p className="detail-cta-sub">Join thousands of teams already saving time and money.</p>
           </div>
           <div className="detail-cta-actions">
-            <Link to="/contact" className="btn btn-primary">{product.status === 'Coming Soon' ? 'Join Waitlist' : 'Start Free Trial'} <ArrowRight size={16} /></Link>
-            <Link to="/contact" className="btn btn-outline">Book a Demo</Link>
+            <Link to="/contact" className="btn-wavy"><span>{product.status === 'Coming Soon' ? 'Join Waitlist' : 'Start Free Trial'}</span> <ArrowRight size={16} /></Link>
+            <Link to="/contact" className="btn btn-outline"><span>Book a Demo</span></Link>
           </div>
         </motion.div>
 

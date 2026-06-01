@@ -1,15 +1,36 @@
+/* ═══════════════════════════════════════════════════
+   Footer — pure black theme
+   ═══════════════════════════════════════════════════ */
 .footer {
-  background: var(--bg2);
+  background: #000;
   border-top: 1px solid var(--border);
 }
 
 /* CTA Banner */
 .footer-cta-banner {
-  background: linear-gradient(135deg, rgba(79,142,247,0.12) 0%, rgba(124,92,252,0.12) 100%);
+  position: relative;
+  overflow: hidden;
+  background: #000;
   border-bottom: 1px solid var(--border);
-  padding: 3rem 0;
+  padding: 3.5rem 2rem;
 }
+
+/* Subtle grid pattern behind CTA */
+.footer-cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+
 .footer-cta-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,10 +50,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 3rem;
-  padding: 4rem 5%;
+  padding: 4rem 2rem;
+  background: #000;
 }
 
-.footer-brand {}
+
 .footer-logo {
   display: flex;
   align-items: center;
@@ -57,7 +79,7 @@
 .social-btn {
   width: 40px; height: 40px;
   border-radius: 10px;
-  background: var(--surface);
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   color: var(--muted);
@@ -70,7 +92,7 @@
   transform: translateY(-3px);
 }
 
-.footer-col {}
+
 .footer-col-title {
   font-size: 0.8rem;
   font-weight: 700;
@@ -96,12 +118,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 5%;
+  padding: 1.5rem 2rem;
   border-top: 1px solid var(--border);
   font-size: 0.85rem;
   color: var(--muted);
   flex-wrap: wrap;
   gap: 1rem;
+  background: #000;
 }
 .footer-bottom-links {
   display: flex;

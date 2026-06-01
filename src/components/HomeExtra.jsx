@@ -65,8 +65,8 @@ const HomeExtra = () => (
               <CheckCircle size={18} className="text-accent3"/> {item}
             </div>
           ))}
-          <Link to="/about" className="btn btn-primary" style={{marginTop:'2rem'}}>
-            Learn about us <ArrowRight size={16}/>
+          <Link to="/about" className="btn-wavy" style={{marginTop:'2rem'}}>
+            <span>Learn about us</span> <ArrowRight size={16}/>
           </Link>
         </motion.div>
 

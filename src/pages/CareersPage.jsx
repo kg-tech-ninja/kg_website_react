@@ -41,7 +41,7 @@ const JobCard = ({ job }) => {
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="job-body">
           <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>{job.desc}</p>
           <Link to="/contact" className="btn btn-primary" style={{ fontSize: '0.875rem' }}>
-            Apply Now <ArrowRight size={15}/>
+            <span>Apply Now</span> <ArrowRight size={15}/>
           </Link>
         </motion.div>
       )}
@@ -93,7 +93,7 @@ const CareersPage = () => (
       <div className="card" style={{ marginTop: '3rem', textAlign: 'center', padding: '3rem', background: 'linear-gradient(135deg, rgba(79,142,247,0.06), rgba(124,92,252,0.06))' }}>
         <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem' }}>Don't see a fit?</h3>
         <p style={{ color: 'var(--muted)', marginBottom: '1.5rem' }}>Send us your resume and we'll reach out when the right role opens up.</p>
-        <Link to="/contact" className="btn btn-primary">Send your resume <ArrowRight size={16}/></Link>
+        <Link to="/contact" className="btn btn-primary"><span>Send your resume</span> <ArrowRight size={16}/></Link>
       </div>
     </div>
   </div>

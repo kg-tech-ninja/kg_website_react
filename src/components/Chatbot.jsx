@@ -112,7 +112,7 @@ const Chatbot = () => {
           "  - KG Insight: Business Intelligence and data visualization platform using natural language AI query. Pricing: Starter (₹1,999/mo), Pro (₹6,999/mo), Enterprise (Custom). Status: Coming Soon.\n" +
           "5. Boundaries: Keep responses helpful but concise (bullet points are encouraged). Do not make up facts. Always represent the brand as a premium IT & engineering leader.";
 
-        const modelName = config.geminiModel || 'gemini-1.5-flash';
+        const modelName = config.geminiModel || 'gemini-2.5-flash';
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${config.geminiApiKey}`;
 
         const payload = {

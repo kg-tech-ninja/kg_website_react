@@ -77,8 +77,8 @@ const ProductsPage = () => (
                 </div>
               ))}
             </div>
-            <Link to="/contact" className="btn btn-primary" style={{ background: `linear-gradient(135deg, ${p.color}, ${p.color}cc)` }}>
-              {p.status === 'Coming Soon' ? 'Join Waitlist' : 'Get Started'} <ArrowRight size={16}/>
+            <Link to="/contact" className="btn-wavy">
+              <span>{p.status === 'Coming Soon' ? 'Join Waitlist' : 'Get Started'}</span> <ArrowRight size={16}/>
             </Link>
           </div>
 

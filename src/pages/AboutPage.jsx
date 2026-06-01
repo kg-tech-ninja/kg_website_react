@@ -45,7 +45,7 @@ const AboutPage = () => (
         <p style={{ color: 'var(--muted)', lineHeight: 1.8, marginBottom: '2rem' }}>
           Today, with 200+ engineers across 4 countries, we've delivered over 350 digital products and continue to grow — driven by the same conviction that extraordinary technology, built with care, changes businesses.
         </p>
-        <Link to="/contact" className="btn btn-primary">Work with us <ArrowRight size={16}/></Link>
+        <Link to="/contact" className="btn-wavy"><span>Work with us</span> <ArrowRight size={16}/></Link>
       </motion.div>
       <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
         <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=480&fit=crop" alt="KG Ops Team" style={{ width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', height: '380px', objectFit: 'cover' }}/>

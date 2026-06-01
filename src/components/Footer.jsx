@@ -14,8 +14,8 @@ const Footer = () => (
           <h3 className="footer-cta-title">Ready to Transform Your Business?</h3>
           <p className="footer-cta-sub">Let's build something exceptional together.</p>
         </div>
-        <Link to="/contact" className="btn btn-primary">
-          Start a Project <ArrowUpRight size={18}/>
+        <Link to="/contact" className="btn-wavy">
+          <span>Start a Project</span> <ArrowUpRight size={18}/>
         </Link>
       </div>
     </div>

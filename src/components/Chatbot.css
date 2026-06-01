@@ -48,12 +48,33 @@
   max-height: 580px;
   display: flex;
   flex-direction: column;
-  background: #0d1220;
+  background: #000000;
   border: 1px solid rgba(79, 142, 247, 0.2);
   border-radius: 20px;
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
   overflow: hidden;
 }
+
+/* Subtle dot-grid pattern behind the chat contents */
+.chat-window::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(79, 142, 247, 0.08) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chat-header,
+.chat-body,
+.quick-replies,
+.chat-input-row,
+.chat-footer-note {
+  position: relative;
+  z-index: 1;
+}
+
 .chat-window.minimised {
   max-height: none;
 }
@@ -89,7 +110,7 @@
   height: 10px;
   background: #00d4aa;
   border-radius: 50%;
-  border: 2px solid #0d1220;
+  border: 2px solid #000000;
   animation: pulse-online 2s ease-in-out infinite;
 }
 @keyframes pulse-online {
