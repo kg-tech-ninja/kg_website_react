@@ -161,6 +161,18 @@
   appearance: none;
   -webkit-appearance: none;
   line-height: 1.5;
+  caret-color: var(--accent);
+}
+
+/* Fix pasted & autofilled text appearing white / invisible */
+.cf-input:-webkit-autofill,
+.cf-input:-webkit-autofill:hover,
+.cf-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text, #fff);
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 9999s ease-in-out 0s;
+  background-clip: text;
 }
 
 /* Textarea — compact height so form fits in viewport */
@@ -205,6 +217,21 @@ textarea.cf-input {
   color: var(--danger);
   font-size: 0.85rem;
   text-align: center;
+}
+
+/* ── Error highlight: soft amber underline for missing required fields ── */
+.cf-field--error .cf-line {
+  background: rgba(251, 146, 60, 0.35);
+}
+
+.cf-field--error .cf-line::after {
+  background: #f97316;
+  left: 0;              /* visible immediately without needing focus */
+  opacity: 0.7;
+}
+
+.cf-field--error .cf-label {
+  color: #f97316;
 }
 
 /* ══════════════════════════════════

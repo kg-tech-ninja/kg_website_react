@@ -5,13 +5,13 @@ import { config } from '../data/config';
 import './ContactPage.css';
 
 /* ── Floating label input ── */
-const FloatInput = ({ label, name, type = 'text', value, onChange, required, disabled, as = 'input', rows, children, list }) => {
+const FloatInput = ({ label, name, type = 'text', value, onChange, required, disabled, as = 'input', rows, children, list, hasError }) => {
   const [focused, setFocused] = useState(false);
   const active = focused || value;
   const Tag = as;
 
   return (
-    <div className={`cf-field${active ? ' cf-field--active' : ''}${focused ? ' cf-field--focus' : ''}`}>
+    <div className={`cf-field${active ? ' cf-field--active' : ''}${focused ? ' cf-field--focus' : ''}${hasError ? ' cf-field--error' : ''}`}>
       <label className="cf-label">{label}{required && ' *'}</label>
       <Tag
         className="cf-input"
@@ -37,25 +37,45 @@ const ContactPage = () => {
   const [submitted,  setSubmitted]  = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error,      setError]      = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [form, setForm] = useState({
     firstName: '', lastName: '', countryCode: '+91', phone: '', email: '', message: ''
   });
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    let value = e.target.value;
+    // Strip '+' and spaces from phone number field
+    if (e.target.name === 'phone') {
+      value = value.replace(/[+\s]/g, '');
+    }
+    setForm({ ...form, [e.target.name]: value });
+    // Clear error highlight as user types
+    if (fieldErrors[e.target.name]) {
+      setFieldErrors({ ...fieldErrors, [e.target.name]: false });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
 
-    /* ── Validate all required fields ── */
+    /* ── Validate required fields (lastName is optional) ── */
     const { firstName, lastName, countryCode, phone, email, message } = form;
-    if (!firstName.trim() || !lastName.trim() || !countryCode.trim() ||
-        !phone.trim() || !email.trim() || !message.trim()) {
+    const errors = {
+      firstName:   !firstName.trim(),
+      countryCode: !countryCode.trim(),
+      phone:       !phone.trim(),
+      email:       !email.trim(),
+      message:     !message.trim(),
+    };
+    if (Object.values(errors).some(Boolean)) {
+      setFieldErrors(errors);
       setError('Please fill in all fields before submitting.');
       setSubmitting(false);
       return;
     }
+    setFieldErrors({});
 
     const fullName  = `${firstName} ${lastName}`.trim();
     const fullPhone = `${countryCode} ${phone}`.trim();
@@ -143,22 +163,22 @@ const ContactPage = () => {
               <form className="cf-form" onSubmit={handleSubmit} noValidate>
                 {/* Row 1: First + Last — both required */}
                 <div className="cf-row">
-                  <FloatInput label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required disabled={submitting} />
-                  <FloatInput label="Last Name"  name="lastName"  value={form.lastName}  onChange={handleChange} required disabled={submitting} />
+                  <FloatInput label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required disabled={submitting} hasError={fieldErrors.firstName} />
+                  <FloatInput label="Last Name"  name="lastName"  value={form.lastName}  onChange={handleChange}          disabled={submitting} />
                 </div>
 
                 {/* Row 2: Code + Phone — both required */}
                 <div className="cf-row--phone">
-                  <FloatInput label="Code" name="countryCode" value={form.countryCode} onChange={handleChange} required list="codes" disabled={submitting} />
+                  <FloatInput label="Code" name="countryCode" value={form.countryCode} onChange={handleChange} required list="codes" disabled={submitting} hasError={fieldErrors.countryCode} />
                   <datalist id="codes">
                     <option value="+91" /><option value="+1" /><option value="+44" /><option value="+61" /><option value="+971" /><option value="+65" /><option value="+60" />
                     <option value="+81" /><option value="+49" /><option value="+33" /><option value="+86" /><option value="+27" /><option value="+39" /><option value="+34" />
                   </datalist>
-                  <FloatInput label="Phone No." name="phone" type="tel" value={form.phone} onChange={handleChange} required disabled={submitting} />
+                  <FloatInput label="Phone No." name="phone" type="tel" value={form.phone} onChange={handleChange} required disabled={submitting} hasError={fieldErrors.phone} />
                 </div>
 
                 {/* Row 3: Email */}
-                <FloatInput label="Email" name="email" type="email" value={form.email} onChange={handleChange} required disabled={submitting} />
+                <FloatInput label="Email" name="email" type="email" value={form.email} onChange={handleChange} required disabled={submitting} hasError={fieldErrors.email} />
 
                 {/* Row 4: Message */}
                 <FloatInput
@@ -170,6 +190,7 @@ const ContactPage = () => {
                   disabled={submitting}
                   as="textarea"
                   rows={4}
+                  hasError={fieldErrors.message}
                 />
 
                 {error && <p className="cf-error">{error}</p>}
