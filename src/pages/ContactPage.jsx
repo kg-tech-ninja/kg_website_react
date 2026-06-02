@@ -48,8 +48,17 @@ const ContactPage = () => {
     setSubmitting(true);
     setError(null);
 
-    const fullName  = `${form.firstName} ${form.lastName}`.trim();
-    const fullPhone = `${form.countryCode} ${form.phone}`.trim();
+    /* ── Validate all required fields ── */
+    const { firstName, lastName, countryCode, phone, email, message } = form;
+    if (!firstName.trim() || !lastName.trim() || !countryCode.trim() ||
+        !phone.trim() || !email.trim() || !message.trim()) {
+      setError('Please fill in all fields before submitting.');
+      setSubmitting(false);
+      return;
+    }
+
+    const fullName  = `${firstName} ${lastName}`.trim();
+    const fullPhone = `${countryCode} ${phone}`.trim();
 
     if (!config.scriptUrl || config.scriptUrl.includes('YOUR_GOOGLE_SCRIPT_WEB_APP_URL')) {
       setTimeout(() => { setSubmitted(true); setSubmitting(false); }, 800);
@@ -132,20 +141,20 @@ const ContactPage = () => {
               </h1>
 
               <form className="cf-form" onSubmit={handleSubmit} noValidate>
-                {/* Row 1: First + Last */}
+                {/* Row 1: First + Last — both required */}
                 <div className="cf-row">
                   <FloatInput label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required disabled={submitting} />
-                  <FloatInput label="Last Name"  name="lastName"  value={form.lastName}  onChange={handleChange} disabled={submitting} />
+                  <FloatInput label="Last Name"  name="lastName"  value={form.lastName}  onChange={handleChange} required disabled={submitting} />
                 </div>
 
-                {/* Row 2: Code + Phone */}
+                {/* Row 2: Code + Phone — both required */}
                 <div className="cf-row--phone">
-                  <FloatInput label="Code" name="countryCode" value={form.countryCode} onChange={handleChange} list="codes" disabled={submitting} />
+                  <FloatInput label="Code" name="countryCode" value={form.countryCode} onChange={handleChange} required list="codes" disabled={submitting} />
                   <datalist id="codes">
                     <option value="+91" /><option value="+1" /><option value="+44" /><option value="+61" /><option value="+971" /><option value="+65" /><option value="+60" />
                     <option value="+81" /><option value="+49" /><option value="+33" /><option value="+86" /><option value="+27" /><option value="+39" /><option value="+34" />
                   </datalist>
-                  <FloatInput label="Phone No." name="phone" type="tel" value={form.phone} onChange={handleChange} disabled={submitting} />
+                  <FloatInput label="Phone No." name="phone" type="tel" value={form.phone} onChange={handleChange} required disabled={submitting} />
                 </div>
 
                 {/* Row 3: Email */}
