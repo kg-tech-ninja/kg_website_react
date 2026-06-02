@@ -17,11 +17,13 @@ const Hero = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.6], [0, -50]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
     <section className="hero" ref={ref}>
       {/* Video BG */}
-      <div className="hero-video-bg">
+      <motion.div className="hero-video-bg" style={{ y: bgY }}>
         <video autoPlay loop muted playsInline>
           <source
             src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-loop-27357-large.mp4"
@@ -29,12 +31,12 @@ const Hero = () => {
           />
         </video>
         <div className="hero-gradient-overlay"/>
-      </div>
+      </motion.div>
 
       {/* Animated grid lines */}
       <div className="grid-overlay"/>
 
-      <motion.div className="container hero-content" style={{ opacity }}>
+      <motion.div className="container hero-content" style={{ opacity, y }}>
         {/* Pill badge */}
         <motion.div
           className="hero-badge"

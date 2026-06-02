@@ -400,15 +400,20 @@
    Responsive breakpoints
    ═══════════════════════════════════════════════════ */
 
-/* Tablet: hide desktop nav, show hamburger */
+/* Tablet: hide desktop nav, show hamburger, keep CTA but make it compact */
 @media (max-width: 900px) {
-  .kg-nav__links,
-  .kg-nav__cta {
+  .kg-nav__links {
     display: none;
   }
 
   .kg-nav__hamburger {
     display: flex;
+  }
+
+  .kg-nav__cta {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.3);
   }
 }
 

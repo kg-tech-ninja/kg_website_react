@@ -108,8 +108,10 @@
   gap: 2.5rem;
 }
 
-.cf-row--3 {
-  grid-template-columns: 90px 1fr 1.4fr;
+/* Code + Phone: code column fixed-width so it doesn't collapse */
+.cf-row--phone {
+  display: grid;
+  grid-template-columns: 100px 1fr;
   gap: 2rem;
 }
 
@@ -298,8 +300,20 @@ textarea.cf-input {
    Responsive
 ══════════════════════════════════ */
 @media (max-width: 700px) {
-  .cf-row { grid-template-columns: 1fr; gap: 1.8rem; }
-  .cf-row--3 { grid-template-columns: 80px 1fr; gap: 1.5rem; }
-  .cf-row--3 .cf-field:last-child { grid-column: 1 / -1; }
+  /* First/Last name: stack vertically */
+  .cf-row { grid-template-columns: 1fr; gap: 1.5rem; }
+
+  /* Code + Phone: also stack vertically for clean look */
+  .cf-row--phone { grid-template-columns: 1fr; gap: 1.5rem; }
+
   .cf-heading { font-size: 2rem; }
+
+  /* Full-width submit on mobile */
+  .cf-submit-wrap { display: block; }
+  .cf-submit { width: 100%; padding: 1rem 2rem; }
+}
+
+@media (max-width: 400px) {
+  .contact-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .cf-heading { font-size: 1.75rem; }
 }

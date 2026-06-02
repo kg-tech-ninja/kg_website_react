@@ -175,9 +175,13 @@
 }
 
 @media (max-width: 768px) {
+  .hero-content {
+    padding-top: calc(var(--nav-h) + 3rem);
+    padding-bottom: 3.5rem;
+  }
   .stats-inner { grid-template-columns: 1fr 1fr; }
   .stat-item:nth-child(2) { border-right: none; }
   .stat-item { border-bottom: 1px solid var(--border); }
   .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
-  .hero-actions { flex-direction: column; }
+  .hero-actions { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 0.75rem; }
 }

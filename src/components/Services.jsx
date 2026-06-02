@@ -27,8 +27,8 @@ const ServicesOverview = () => (
         className="section-header"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 0.5 }}
       >
         <div className="section-tag">What we do</div>
         <h2 className="section-title">Comprehensive Digital <span className="gradient-text">Services</span></h2>
@@ -37,10 +37,10 @@ const ServicesOverview = () => (
 
       <motion.div
         className="services-grid"
-        variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+        variants={{ show: { transition: { staggerChildren: 0.08 } } }}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: false, amount: 0.1 }}
       >
         {items.map((s, i) => (
           <motion.div key={i} variants={card}>

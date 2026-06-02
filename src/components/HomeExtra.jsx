@@ -45,10 +45,10 @@ const HomeExtra = () => (
       <div className="container why-inner">
         <motion.div
           className="why-left"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="section-tag">Why KG Ops</div>
           <h2 className="section-title">The Partner You Need to <span className="gradient-text">Scale Fast</span></h2>
@@ -72,10 +72,10 @@ const HomeExtra = () => (
 
         <motion.div
           className="why-right"
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&h=500&fit=crop"
@@ -115,8 +115,8 @@ const HomeExtra = () => (
               className="process-card card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
             >
               <span className="process-num gradient-text">{p.num}</span>
               <h3 style={{fontFamily:"'Space Grotesk',sans-serif", fontSize:'1.1rem', fontWeight:700, marginBottom:'0.6rem'}}>{p.title}</h3>
@@ -134,7 +134,7 @@ const HomeExtra = () => (
           className="section-header"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           style={{textAlign:'center', alignItems:'center', display:'flex', flexDirection:'column', marginBottom:'4rem'}}
         >
           <div className="section-tag">Client Love</div>
@@ -148,8 +148,8 @@ const HomeExtra = () => (
               className="testi-card card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
             >
               <Quote size={32} className="testi-quote-icon"/>
               <p className="testi-text">"{t.quote}"</p>

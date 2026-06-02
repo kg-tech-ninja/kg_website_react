@@ -5,7 +5,7 @@ import { config } from '../data/config';
 import './ContactPage.css';
 
 /* ── Floating label input ── */
-const FloatInput = ({ label, name, type = 'text', value, onChange, required, disabled, as = 'input', rows }) => {
+const FloatInput = ({ label, name, type = 'text', value, onChange, required, disabled, as = 'input', rows, children, list }) => {
   const [focused, setFocused] = useState(false);
   const active = focused || value;
   const Tag = as;
@@ -24,7 +24,10 @@ const FloatInput = ({ label, name, type = 'text', value, onChange, required, dis
         required={required}
         disabled={disabled}
         rows={rows}
-      />
+        list={list}
+      >
+        {children}
+      </Tag>
       <span className="cf-line" />
     </div>
   );
@@ -135,32 +138,20 @@ const ContactPage = () => {
                   <FloatInput label="Last Name"  name="lastName"  value={form.lastName}  onChange={handleChange} disabled={submitting} />
                 </div>
 
-                {/* Row 2: Country code + Phone + Email */}
-                <div className="cf-row cf-row--3">
-                  <div className="cf-field cf-field--code">
-                    <label className="cf-label">Code</label>
-                    <select
-                      className="cf-input cf-select"
-                      name="countryCode"
-                      value={form.countryCode}
-                      onChange={handleChange}
-                      disabled={submitting}
-                    >
-                      <option>+91</option>
-                      <option>+1</option>
-                      <option>+44</option>
-                      <option>+61</option>
-                      <option>+971</option>
-                      <option>+65</option>
-                      <option>+60</option>
-                    </select>
-                    <span className="cf-line" />
-                  </div>
-                  <FloatInput label="Phone No." name="phone" type="tel"   value={form.phone} onChange={handleChange} disabled={submitting} />
-                  <FloatInput label="Email"     name="email" type="email" value={form.email} onChange={handleChange} required disabled={submitting} />
+                {/* Row 2: Code + Phone */}
+                <div className="cf-row--phone">
+                  <FloatInput label="Code" name="countryCode" value={form.countryCode} onChange={handleChange} list="codes" disabled={submitting} />
+                  <datalist id="codes">
+                    <option value="+91" /><option value="+1" /><option value="+44" /><option value="+61" /><option value="+971" /><option value="+65" /><option value="+60" />
+                    <option value="+81" /><option value="+49" /><option value="+33" /><option value="+86" /><option value="+27" /><option value="+39" /><option value="+34" />
+                  </datalist>
+                  <FloatInput label="Phone No." name="phone" type="tel" value={form.phone} onChange={handleChange} disabled={submitting} />
                 </div>
 
-                {/* Row 3: Message */}
+                {/* Row 3: Email */}
+                <FloatInput label="Email" name="email" type="email" value={form.email} onChange={handleChange} required disabled={submitting} />
+
+                {/* Row 4: Message */}
                 <FloatInput
                   label="How can we help?"
                   name="message"
