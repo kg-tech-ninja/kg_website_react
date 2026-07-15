@@ -65,17 +65,19 @@
   gap: 4px;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.93rem;
-  font-weight: 500;
-  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #ffffff;
   cursor: pointer;
   transition: color 0.25s ease, background 0.25s ease;
   white-space: nowrap;
   text-decoration: none;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.45);
 }
 
 .kg-nav__link:hover {
-  color: var(--text);
+  color: var(--accent);
   background: rgba(255, 255, 255, 0.05);
 }
 
@@ -120,17 +122,45 @@
 /* ── Dropdown panel ── */
 .kg-nav__dropdown {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 12px);
   left: 50%;
-  transform: translateX(-50%);
+  /* horizontal centering (-50%) is supplied by Framer Motion's `x`
+     so it isn't overwritten by the y/scale transform */
+  transform-origin: top center;
   width: 460px;
-  background: #000000;
-  border: 1px solid var(--border);
-  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(20,23,34,0.9), rgba(11,13,21,0.92));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
   padding: 1.4rem 1.25rem;
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(79,142,247,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.08);
   z-index: 200;
-  /* pointer events stay active while hovering the panel */
+  will-change: transform, opacity;
+}
+/* soft brand glow along the top edge */
+.kg-nav__dropdown .kg-nav__drop-label { position: relative; z-index: 1; }
+/* transparent bridge across the trigger→panel gap so hover never drops */
+.kg-nav__dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px; left: 0; right: 0;
+  height: 12px;
+}
+/* caret pointing up at the Services trigger */
+.kg-nav__dropdown::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: 50%;
+  width: 12px; height: 12px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgba(20,23,34,0.92);
+  border-left: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top-left-radius: 3px;
 }
 
 .kg-nav__drop-label {
@@ -150,33 +180,74 @@
   gap: 0.35rem;
 }
 
+/* compact single-column variant (Products) */
+.kg-nav__dropdown--sm { width: 320px; }
+.kg-nav__dropdown--sm .kg-nav__drop-grid { grid-template-columns: 1fr; }
+.kg-nav__drop-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.kg-nav__drop-name { font-weight: 600; color: inherit; }
+.kg-nav__drop-tag { font-size: 0.72rem; color: var(--muted); }
+
 .kg-nav__drop-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   padding: 0.6rem 0.8rem;
-  border-radius: 10px;
+  border-radius: 11px;
   font-size: 0.87rem;
-  color: var(--muted);
-  transition: background 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+  color: #c3ccdd;
+  border: 1px solid transparent;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
   text-decoration: none;
 }
 
 .kg-nav__drop-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
+  background: rgba(79, 142, 247, 0.1);
+  border-color: rgba(79, 142, 247, 0.25);
+  color: #fff;
+  transform: translateX(3px);
 }
 
 .kg-nav__drop-icon {
-  width: 28px;
-  height: 28px;
-  background: rgba(79, 142, 247, 0.1);
-  border-radius: 7px;
+  width: 30px;
+  height: 30px;
+  background: rgba(79, 142, 247, 0.12);
+  border: 1px solid rgba(79, 142, 247, 0.22);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent);
   flex-shrink: 0;
+  transition: background 0.22s ease, border-color 0.22s ease;
+}
+.kg-nav__drop-item:hover .kg-nav__drop-icon {
+  background: rgba(79, 142, 247, 0.2);
+  border-color: rgba(79, 142, 247, 0.45);
+}
+
+/* ── "View all services" footer link ── */
+.kg-nav__drop-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+.kg-nav__drop-all svg { transition: transform 0.25s ease; }
+.kg-nav__drop-all:hover { color: #7fb0ff; }
+.kg-nav__drop-all:hover svg { transform: translateX(4px); }
+
+.kg-mob__sub-all {
+  color: var(--accent) !important;
+  font-weight: 600;
+  gap: 8px;
 }
 
 /* ── CTA + Hamburger wrapper ── */
@@ -342,16 +413,16 @@
   justify-content: space-between;
   padding: 0.9rem 0.5rem;
   border-bottom: 1px solid var(--border);
-  color: var(--muted);
+  color: #ffffff;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   transition: color 0.2s ease, padding-left 0.2s ease;
   text-decoration: none;
 }
 
 .kg-mob__link:hover {
-  color: var(--text);
+  color: var(--accent);
   padding-left: 0.85rem;
 }
 

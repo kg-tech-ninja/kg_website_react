@@ -1,24 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Globe, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import './Footer.css';
 import { config } from '../data/config';
 
-const Footer = () => (
+const Footer = () => {
+  const { pathname } = useLocation();
+  const hideCta = ['/products', '/contact'].includes(pathname);
+
+  return (
   <footer className="footer">
-    {/* CTA Banner */}
-    <div className="footer-cta-banner">
-      <div className="container footer-cta-inner">
-        <div>
-          <h3 className="footer-cta-title">Ready to Transform Your Business?</h3>
-          <p className="footer-cta-sub">Let's build something exceptional together.</p>
+    {/* CTA Banner — hidden on pages with their own CTA */}
+    {!hideCta && (
+      <div className="footer-cta-banner">
+        <div className="container footer-cta-inner">
+          <div>
+            <h3 className="footer-cta-title">Ready to Transform Your Business?</h3>
+            <p className="footer-cta-sub">Let's build something exceptional together.</p>
+          </div>
+          <Link to="/contact" className="btn-wavy">
+            <span>Start a Project</span> <ArrowUpRight size={18}/>
+          </Link>
         </div>
-        <Link to="/contact" className="btn-wavy">
-          <span>Start a Project</span> <ArrowUpRight size={18}/>
-        </Link>
       </div>
-    </div>
+    )}
 
     <div className="footer-main container">
       {/* Brand */}
@@ -52,27 +59,26 @@ const Footer = () => (
         <h4 className="footer-col-title">Company</h4>
         <ul>
           <li><Link to="/about">About Us</Link></li>
-          {/* <li><Link to="/case-studies">Case Studies</Link></li> */}
-          {/* <li><Link to="/careers">Careers</Link></li> */}
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/services">Services</Link></li>
           <li><Link to="/products">Products</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
       </div>
 
       <div className="footer-col">
-        <h4 className="footer-col-title">Technologies</h4>
+        <h4 className="footer-col-title">Solutions</h4>
         <ul>
-          <li><a href="#">React & Next.js</a></li>
-          <li><a href="#">Node.js & Python</a></li>
-          <li><a href="#">AWS & Azure</a></li>
-          <li><a href="#">Docker & Kubernetes</a></li>
-          <li><a href="#">TensorFlow & PyTorch</a></li>
+          <li><Link to="/services/mobile-development">Mobile Development</Link></li>
+          <li><Link to="/services/web-development">Web Development</Link></li>
+          <li><Link to="/services/admin-support">Support Solutions</Link></li>
+          <li><Link to="/services/devops">Cloud Infrastructure</Link></li>
+          <li><Link to="/services/ai-ml">Data & Analytics</Link></li>
         </ul>
       </div>
     </div>
 
     <div className="footer-bottom container">
-      <p>&copy; {new Date().getFullYear()} KG Ops. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} KG Web & Ops. All rights reserved.</p>
       <div className="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -80,6 +86,8 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;
+

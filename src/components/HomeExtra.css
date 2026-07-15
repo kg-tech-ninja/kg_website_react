@@ -25,6 +25,69 @@
   display: block;
   border: 1px solid var(--border);
 }
+
+/* ─── Custom vector illustration ─── */
+.why-illustration {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background:
+    radial-gradient(130% 110% at 80% 0%, rgba(79,142,247,0.14), transparent 55%),
+    linear-gradient(160deg, #0c1122, #080a12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.why-illustration::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 45%, #000, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 45%, #000, transparent 80%);
+}
+.wi {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* subtle motion */
+.wi-float-a { animation: wi-float 7s ease-in-out infinite; }
+.wi-float-b { animation: wi-float 8.5s ease-in-out infinite; animation-delay: -2.5s; }
+@keyframes wi-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+.wi-donut {
+  transform-box: view-box;
+  transform-origin: 392px 176px;
+  animation: wi-spin 24s linear infinite;
+}
+.wi-spin-slow {
+  transform-box: view-box;
+  transform-origin: 512px 356px;
+  animation: wi-spin 40s linear infinite;
+}
+@keyframes wi-spin { to { transform: rotate(360deg); } }
+.wi-glow { animation: wi-breathe 6s ease-in-out infinite; transform-box: view-box; transform-origin: 360px 150px; }
+@keyframes wi-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.05); }
+}
+.wi-pulse { animation: wi-pulse 3s ease-in-out infinite; }
+@keyframes wi-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wi-float-a, .wi-float-b, .wi-donut, .wi-spin-slow, .wi-glow, .wi-pulse { animation: none; }
+}
 .why-floating-card {
   position: absolute;
   bottom: -24px;
@@ -155,6 +218,9 @@
   .why-floating-card { display: none; }
   .why-img {
     height: 280px;
+  }
+  .why-illustration {
+    height: 300px;
   }
   .process-grid, .testi-grid, .cases-grid {
     grid-template-columns: 1fr;

@@ -6,7 +6,7 @@ import { config } from '../data/config';
 
 // ── Placeholder responses (replace with real AI API call later) ──────────────
 const botResponses = {
-  greeting: ["Hi there! 👋 I'm KG Assistant. How can I help you today?", "Welcome to KG Ops! I'm here to help. What can I do for you?"],
+  greeting: ["Hi there! 👋 I'm KG Assistant. How can I help you today?", "Welcome to KG Web & Ops! I'm here to help. What can I do for you?"],
   services: ["We offer IT Services, DevOps, Digital Marketing, Custom Software, Mobile Development, AI/ML Services, and Admin Support. Which one interests you? 🚀"],
   pricing: ["Our pricing is flexible and project-based. The best way to get an accurate quote is to book a free consultation. Want me to connect you?"],
   contact: [`You can reach us at ${config.email} or call ${config.phone}. Or simply click 'Talk to us' in the top navigation! 📞`],
@@ -43,6 +43,19 @@ const Chatbot = () => {
   const [typing, setTyping] = useState(false);
   const [unread, setUnread] = useState(0);
   const bottomRef = useRef(null);
+  const windowRef = useRef(null);
+
+  // Close (shrink back to the bubble) when clicking outside the chat window
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => {
+      if (windowRef.current && !windowRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
 
   // Scroll to bottom on new message
   useEffect(() => {
@@ -106,11 +119,11 @@ const Chatbot = () => {
           "  - AI & ML Services: LLM Integration (GPT, Gemini), Computer Vision (object detection, OCR), Predictive Analytics, MLOps, RAG chatbot development.\n" +
           "  - Digital Marketing: SEO, SEMrush, Paid Ads (Google, Meta, LinkedIn), HubSpot CRM automation, Email marketing, Brand Identity.\n" +
           "  - Admin & Support: 24/7 client helpdesk, SLA tracking, virtual remote admin staff, Freshdesk/Zendesk integration.\n" +
-          "4. Our Products:\n" +
-          "  - KG Flow: A visual no-code workflow automation platform connecting 200+ integrations. Pricing: Starter (₹999/mo), Pro (₹3,999/mo), Enterprise (Custom). Status: Live.\n" +
-          "  - KG Shield: Unified cybersecurity and zero-trust suite for threat intelligence and compliance reports (ISO 27001, SOC 2). Pricing: Business (₹5,999/mo), Enterprise (Custom). Status: Beta.\n" +
-          "  - KG Insight: Business Intelligence and data visualization platform using natural language AI query. Pricing: Starter (₹1,999/mo), Pro (₹6,999/mo), Enterprise (Custom). Status: Coming Soon.\n" +
-          "5. Boundaries: Keep responses helpful but concise (bullet points are encouraged). Do not make up facts. Always represent the brand as a premium IT & engineering leader.";
+          "4. Our Products (all in development — invite interested visitors to join the waitlist via the contact page; do NOT quote prices or claim they are already live):\n" +
+          "  - KG Flow: A no-code workflow automation platform with a visual drag-and-drop builder. Status: In Development.\n" +
+          "  - KG Shield: A unified cybersecurity and zero-trust suite for threat monitoring and compliance. Status: In Development.\n" +
+          "  - KG Insight: An AI-powered business intelligence platform with natural-language data queries. Status: Coming Soon.\n" +
+          "5. Boundaries: Keep responses helpful but concise (bullet points are encouraged). Never invent facts, clients, case studies, prices, or metrics. We are a new studio — be honest and warm about that. Represent the brand as a skilled, dependable engineering partner.";
 
         const modelName = config.geminiModel || 'gemini-2.5-flash';
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${config.geminiApiKey}`;
@@ -195,6 +208,7 @@ const Chatbot = () => {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={windowRef}
             className={`chat-window ${minimised ? 'minimised' : ''}`}
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -304,7 +318,7 @@ const Chatbot = () => {
                   </button>
                 </div>
 
-                <p className="chat-footer-note">Powered by KG Ops AI · <a href="/contact">Talk to a human →</a></p>
+                <p className="chat-footer-note">Powered by KG Web & Ops AI · <a href="/contact">Talk to a human →</a></p>
               </>
             )}
           </motion.div>

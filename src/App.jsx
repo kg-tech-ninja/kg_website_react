@@ -7,9 +7,7 @@ import ServiceDetailPage from './pages/ServiceDetailPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import AboutPage from './pages/AboutPage';
-import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
-import CaseStudiesPage from './pages/CaseStudiesPage';
 
 function App() {
   return (
@@ -22,9 +20,7 @@ function App() {
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:productId" element={<ProductDetailPage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="careers" element={<CareersPage />} />
           <Route path="contact" element={<ContactPage />} />
-          <Route path="case-studies" element={<CaseStudiesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

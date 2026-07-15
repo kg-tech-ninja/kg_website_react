@@ -31,9 +31,11 @@
 }
 
 .back-link {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 6px;
+  margin-bottom: 1.25rem;
   font-size: 0.85rem;
   color: var(--muted);
   transition: var(--transition);

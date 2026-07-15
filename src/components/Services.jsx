@@ -6,13 +6,13 @@ import './Services.css';
 
 const items = [
   { icon: <Cpu size={28}/>, color: '#4f8ef7', title: 'IT Service & Products', sub: 'End-to-end solutions for modern enterprise', href: '/services/it-services' },
-  { icon: <Megaphone size={28}/>, color: '#7c5cfc', title: 'Digital Marketing', sub: 'Data-driven growth strategies', href: '/services/digital-marketing' },
-  { icon: <ShieldCheck size={28}/>, color: '#00d4aa', title: 'Admin & Support', sub: '24/7 operational excellence', href: '/services/admin-support' },
-  { icon: <Terminal size={28}/>, color: '#f6c90e', title: 'DevOps & CI/CD', sub: 'Automated pipelines & infra', href: '/services/devops' },
+  { icon: <Megaphone size={28}/>, color: '#6d5ef6', title: 'Digital Marketing', sub: 'Data-driven growth strategies', href: '/services/digital-marketing' },
+  { icon: <ShieldCheck size={28}/>, color: '#4f8ef7', title: 'Admin & Support', sub: '24/7 operational excellence', href: '/services/admin-support' },
+  { icon: <Terminal size={28}/>, color: '#6d5ef6', title: 'DevOps & CI/CD', sub: 'Automated pipelines & infra', href: '/services/devops' },
   { icon: <Cloud size={28}/>, color: '#4f8ef7', title: 'SaaS Products', sub: 'Scalable software-as-a-service', href: '/products/kg-flow' },
-  { icon: <Smartphone size={28}/>, color: '#f05454', title: 'Mobile Development', sub: 'iOS & Android applications', href: '/services/mobile-development' },
-  { icon: <Code size={28}/>, color: '#7c5cfc', title: 'Custom Software', sub: 'Bespoke engineering solutions', href: '/services/custom-software' },
-  { icon: <Database size={28}/>, color: '#00d4aa', title: 'AI & ML Services', sub: 'Intelligent automation & analytics', href: '/services/ai-ml' },
+  { icon: <Smartphone size={28}/>, color: '#4f8ef7', title: 'Mobile Development', sub: 'iOS & Android applications', href: '/services/mobile-development' },
+  { icon: <Code size={28}/>, color: '#6d5ef6', title: 'Custom Software', sub: 'Bespoke engineering solutions', href: '/services/custom-software' },
+  { icon: <Database size={28}/>, color: '#4f8ef7', title: 'AI & ML Services', sub: 'Intelligent automation & analytics', href: '/services/ai-ml' },
 ];
 
 const card = {

@@ -34,25 +34,13 @@ const ServiceDetailPage = () => {
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <div className="detail-stats-bar">
-        <div className="container detail-stats-inner">
-          {service.stats.map((s, i) => (
-            <div key={i} className="detail-stat">
-              <span className="stat-number" style={{ color: service.color }}>{s.val}</span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Overview + Gallery */}
       <div className="container detail-body">
         <div className="detail-overview-grid">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div className="section-tag" style={{ marginBottom: '1rem' }}>Overview</div>
             <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '1.25rem' }}>
-              Why Choose <span className="gradient-text">KG Ops</span> for {service.title}?
+              Why Choose <span className="gradient-text">KG Web & Ops</span> for {service.title}?
             </h2>
             <p className="detail-overview-text">{service.overview}</p>
             <Link to="/contact" className="btn-wavy" style={{ marginTop: '2rem' }}>
@@ -105,25 +93,6 @@ const ServiceDetailPage = () => {
           </div>
         </div>
 
-        {/* Tech Stack */}
-        <div className="detail-tech-section">
-          <h3 className="detail-tech-title">Technologies & Tools We Use</h3>
-          <div className="tech-chips">
-            {service.techStack.map((t, i) => (
-              <motion.span
-                key={i}
-                className="tech-chip"
-                style={{ borderColor: `${service.color}40`, color: service.color }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                {t}
-              </motion.span>
-            ))}
-          </div>
-        </div>
 
         {/* CTA Banner */}
         <motion.div
@@ -139,7 +108,7 @@ const ServiceDetailPage = () => {
           </div>
           <div className="detail-cta-actions">
             <Link to="/contact" className="btn-wavy"><span>Start a Project</span> <ArrowRight size={16} /></Link>
-            <Link to="/case-studies" className="btn btn-outline"><span>See Our Work</span></Link>
+            <Link to="/services" className="btn btn-outline"><span>Explore All Services</span></Link>
           </div>
         </motion.div>
 

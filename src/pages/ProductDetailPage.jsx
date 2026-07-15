@@ -12,7 +12,7 @@ const ProductDetailPage = () => {
 
   if (!product) return <Navigate to="/products" replace />;
   const otherProducts = productsData.filter(p => p.id !== productId);
-  const statusColor = { Live: '#00d4aa', Beta: '#4f8ef7', 'Coming Soon': '#f6c90e' };
+  const statusColor = { 'In Development': '#4f8ef7', 'Coming Soon': '#6d5ef6' };
 
   return (
     <div className="detail-page">
@@ -32,17 +32,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      <div className="detail-stats-bar">
-        <div className="container detail-stats-inner">
-          {product.stats.map((s, i) => (
-            <div key={i} className="detail-stat">
-              <span className="stat-number" style={{ color: product.color }}>{s.val}</span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <div className="container detail-body">
         <div className="detail-overview-grid">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -53,9 +42,9 @@ const ProductDetailPage = () => {
             <p className="detail-overview-text">{product.overview}</p>
             <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link to="/contact" className="btn-wavy">
-                <span>{product.status === 'Coming Soon' ? 'Join the Waitlist' : 'Start Free Trial'}</span> <ArrowRight size={16} />
+                <span>Join the Waitlist</span> <ArrowRight size={16} />
               </Link>
-              <Link to="/contact" className="btn btn-outline"><span>Book a Demo</span></Link>
+              <Link to="/contact" className="btn btn-outline"><span>Talk to Us</span></Link>
             </div>
           </motion.div>
 
@@ -85,47 +74,16 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
-        {/* Pricing */}
-        <div className="pricing-section">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <div className="section-tag" style={{ margin: '0 auto 1rem' }}>Pricing</div>
-            <h2 className="section-title">Simple, <span className="gradient-text">Transparent</span> Pricing</h2>
-          </div>
-          <div className="pricing-grid">
-            {product.pricing.map((tier, i) => {
-              const isFeatured = product.pricing.length === 3 && i === 1;
-              return (
-                <motion.div key={i} className={`pricing-card card ${isFeatured ? 'pricing-card-featured' : ''}`}
-                  style={isFeatured ? { borderColor: product.color, background: `${product.color}08` } : {}}
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                  {isFeatured && <div className="pricing-popular" style={{ background: product.color }}>Most Popular</div>}
-                  <h3 className="pricing-plan">{tier.plan}</h3>
-                  <div className="pricing-price" style={{ color: product.color }}>{tier.price}</div>
-                  <ul className="pricing-features">
-                    {tier.features.map((f, j) => (
-                      <li key={j}><CheckCircle size={15} style={{ color: product.color, flexShrink: 0 }} /> {f}</li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className={isFeatured ? "btn-wavy" : "btn btn-outline"}
-                    style={{ width: '100%', justifyContent: 'center' }}>
-                    <span>{tier.price === 'Custom' ? 'Contact Sales' : 'Get Started'}</span> <ArrowRight size={15} />
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
         <motion.div className="detail-cta-banner"
           style={{ background: `linear-gradient(135deg, ${product.color}15, ${product.color}05)`, borderColor: `${product.color}25` }}
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div>
-            <h3 className="detail-cta-title">Ready to try {product.name}?</h3>
-            <p className="detail-cta-sub">Join thousands of teams already saving time and money.</p>
+            <h3 className="detail-cta-title">Want early access to {product.name}?</h3>
+            <p className="detail-cta-sub">Join the waitlist and we'll keep you posted — early users help shape what we build.</p>
           </div>
           <div className="detail-cta-actions">
-            <Link to="/contact" className="btn-wavy"><span>{product.status === 'Coming Soon' ? 'Join Waitlist' : 'Start Free Trial'}</span> <ArrowRight size={16} /></Link>
-            <Link to="/contact" className="btn btn-outline"><span>Book a Demo</span></Link>
+            <Link to="/contact" className="btn-wavy"><span>Join the Waitlist</span> <ArrowRight size={16} /></Link>
+            <Link to="/contact" className="btn btn-outline"><span>Talk to Us</span></Link>
           </div>
         </motion.div>
 

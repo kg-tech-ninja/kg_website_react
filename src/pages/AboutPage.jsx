@@ -3,24 +3,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Globe, Award, Heart } from 'lucide-react';
 
-const team = [
-  { name: 'Karthik G.', role: 'Founder & CEO', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face' },
-  { name: 'Priya Rajan', role: 'CTO', img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face' },
-  { name: 'Arjun S.', role: 'Head of Engineering', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face' },
-  { name: 'Meera V.', role: 'Head of Design', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face' },
-];
-
 const values = [
-  { icon: <Users size={28}/>, title: 'Client First', desc: 'Every decision starts with the question: does this create value for our clients?', color: '#4f8ef7' },
-  { icon: <Globe size={28}/>, title: 'Global Mindset', desc: 'We build solutions that work across borders, cultures, and time zones.', color: '#7c5cfc' },
-  { icon: <Award size={28}/>, title: 'Excellence Always', desc: 'We hold ourselves to the highest technical and professional standards.', color: '#00d4aa' },
-  { icon: <Heart size={28}/>, title: 'People Matter', desc: 'Our culture prioritises wellbeing, growth, and genuine human connection.', color: '#f05454' },
+  { icon: <Users size={28}/>, title: 'Client First', desc: 'Every decision starts with one question: does this create real value for the client?', color: '#4f8ef7' },
+  { icon: <Award size={28}/>, title: 'Craft Over Volume', desc: 'We take on work we can do exceptionally well — and we back every line of it.', color: '#6d5ef6' },
+  { icon: <Globe size={28}/>, title: 'Modern By Default', desc: 'Secure, scalable, and built on today’s best tools — not yesterday’s shortcuts.', color: '#4f8ef7' },
+  { icon: <Heart size={28}/>, title: 'Honest & Direct', desc: 'Clear communication, realistic timelines, and no jargon between you and the people building your product.', color: '#4f8ef7' },
 ];
 
 const AboutPage = () => (
   <div style={{ minHeight: '100vh' }}>
     {/* Hero */}
-    <div style={{ padding: 'calc(var(--nav-h) + 2rem) 0 2.5rem', background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,212,170,0.08) 0%, transparent 70%)', borderBottom: '1px solid var(--border)' }}>
+    <div style={{ padding: 'calc(var(--nav-h) + 2rem) 0 2.5rem', background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79,142,247,0.1) 0%, transparent 70%)', borderBottom: '1px solid var(--border)' }}>
       <div className="container" style={{ textAlign: 'center' }}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="section-tag" style={{ margin: '0 auto 1.25rem' }}>Who We Are</div>
@@ -28,7 +21,8 @@ const AboutPage = () => (
             Building the Future of <span className="gradient-text">Digital Enterprise</span>
           </h1>
           <p className="section-sub" style={{ margin: '0 auto' }}>
-            Founded in 2012, KG Ops is a global technology engineering company helping businesses build, scale, and operate the digital infrastructure of tomorrow.
+            KG Web & Ops is a newly founded technology studio — a small, senior team helping businesses
+            design, build, and operate modern software, websites, and IT.
           </p>
         </motion.div>
       </div>
@@ -38,22 +32,25 @@ const AboutPage = () => (
     <div className="container" style={{ padding: '2.5rem 5%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
       <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
         <div className="section-tag" style={{ marginBottom: '1.25rem' }}>Our Story</div>
-        <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>From a 3-Person Startup to a <span className="gradient-text">Global Team</span></h2>
+        <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>A Fresh Start, Built on <span className="gradient-text">Real Craft</span></h2>
         <p style={{ color: 'var(--muted)', lineHeight: 1.8, marginBottom: '1rem' }}>
-          KG Ops began in 2012 when our founder Karthik G. recognized that most businesses were underserved by generic IT firms — and set out to build something different: a deeply technical, client-obsessed engineering company.
+          We started KG Web & Ops because we believe businesses deserve a technology partner that treats
+          their product like its own — not a ticket in a queue. No bloated agency layers, no juniors
+          learning on your budget. Just experienced people doing focused, high-quality work.
         </p>
         <p style={{ color: 'var(--muted)', lineHeight: 1.8, marginBottom: '2rem' }}>
-          Today, with 200+ engineers across 4 countries, we've delivered over 350 digital products and continue to grow — driven by the same conviction that extraordinary technology, built with care, changes businesses.
+          We're early in our journey, and we're honest about that. What we bring is deep technical skill,
+          a genuine sense of ownership, and the drive of a team out to prove itself on every single project.
         </p>
         <Link to="/contact" className="btn-wavy"><span>Work with us</span> <ArrowRight size={16}/></Link>
       </motion.div>
       <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=480&fit=crop" alt="KG Ops Team" style={{ width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', height: '380px', objectFit: 'cover' }}/>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=480&fit=crop" alt="Focused engineering work" style={{ width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', height: '380px', objectFit: 'cover' }}/>
       </motion.div>
     </div>
 
     {/* Values */}
-    <div style={{ background: 'var(--bg2)', padding: '2.5rem 0' }}>
+    <div style={{ background: 'var(--bg2)', padding: '3.5rem 0' }}>
       <div className="container" style={{ padding: '0 5%' }}>
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <div className="section-tag" style={{ margin: '0 auto 1rem' }}>Our Core Values</div>
@@ -71,21 +68,13 @@ const AboutPage = () => (
       </div>
     </div>
 
-    {/* Team */}
-    <div className="container" style={{ padding: '2.5rem 5%' }}>
-      <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-        <div className="section-tag" style={{ margin: '0 auto 1rem' }}>Leadership</div>
-        <h2 className="section-title">Meet the <span className="gradient-text">Team</span></h2>
-      </div>
-      <div className="grid-4">
-        {team.map((m, i) => (
-          <motion.div key={i} className="card" style={{ textAlign: 'center', padding: '2rem 1.5rem' }} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-            <img src={m.img} alt={m.name} style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--accent)', marginBottom: '1rem' }}/>
-            <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, marginBottom: '0.3rem' }}>{m.name}</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>{m.role}</p>
-          </motion.div>
-        ))}
-      </div>
+    {/* CTA */}
+    <div className="container" style={{ padding: '4.5rem 5%', textAlign: 'center' }}>
+      <h2 className="section-title" style={{ marginBottom: '1rem' }}>Let's Build Something <span className="gradient-text">Together</span></h2>
+      <p className="section-sub" style={{ margin: '0 auto 2rem' }}>
+        Whether it's your first product or your next big rebuild — we'd love to hear what you're working on.
+      </p>
+      <Link to="/contact" className="btn-wavy"><span>Start a conversation</span> <ArrowRight size={16}/></Link>
     </div>
   </div>
 );

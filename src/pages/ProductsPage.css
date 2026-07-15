@@ -1,0 +1,271 @@
+/* ═══════════════════════════════════════════════
+   Products Page — EduHub showcase styles
+   Dark-theme, matches global design system
+═══════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.prod-hero {
+  padding: calc(var(--nav-h, 72px) + 2.5rem) 5% 3rem;
+  background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(79, 142, 247, 0.13) 0%, transparent 70%);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.08));
+  text-align: center;
+}
+
+/* ── Side-by-side layout (content left, image right) ── */
+.prod-main-single {
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  gap: 3.5rem;
+  align-items: start;     /* both columns top-aligned */
+  padding: 3.5rem 5%;
+}
+
+.prod-copy-center {
+  width: 100%;
+  text-align: left;
+}
+
+.prod-copy-center .prod-features {
+  justify-items: start;
+  text-align: left;
+}
+
+.prod-copy-center .prod-desc {
+  text-align: left;
+}
+
+/* ── Copy side ── */
+.prod-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(135deg, #fff 30%, #a0b8e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prod-tagline {
+  font-size: 1.05rem;
+  color: var(--accent, #4f8ef7);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.prod-desc {
+  color: var(--muted, #8a9bb5);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* ── Feature grid ── */
+.prod-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.prod-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--muted, #8a9bb5);
+  line-height: 1.4;
+}
+
+/* ── Landscape image ── */
+.prod-image-wrap {
+  align-self: start;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  max-height: 480px;
+  margin-top: 3.25rem;          /* badge height + margin = lines up with EduHub h2 */
+}
+
+
+.prod-landscape-img {
+  width: 100%;
+  height: 100%;
+  max-height: 480px;            /* same cap on the image itself */
+  display: block;
+  object-fit: contain;          /* full image, no cropping */
+  object-position: center center;
+}
+
+
+/* Hub orbit ring animations */
+.hub-orbit--1 {
+  animation: orbit-spin 28s linear infinite;
+  transform-origin: 260px 210px;
+}
+.hub-orbit--2 {
+  animation: orbit-spin 18s linear infinite reverse;
+  transform-origin: 260px 210px;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Hub node hover pulse */
+.hub-node {
+  animation: node-pulse 3s ease-in-out infinite;
+}
+.hub-node--1 { animation-delay: 0.4s; }
+.hub-node--2 { animation-delay: 0.8s; }
+.hub-node--3 { animation-delay: 1.2s; }
+.hub-node--4 { animation-delay: 1.6s; }
+.hub-node--5 { animation-delay: 2.0s; }
+
+@keyframes node-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.72; }
+}
+
+/* ── Roles section ── */
+.prod-roles-section {
+  padding: 0 5% 3rem;
+}
+
+.prod-roles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.prod-role-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease;
+}
+
+.prod-role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(79, 142, 247, 0.1);
+}
+
+.prod-role-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+}
+
+.prod-role-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--fg, #e8f0fe);
+  margin: 0;
+}
+
+.prod-role-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted, #8a9bb5);
+  margin: 0;
+}
+
+/* ── CTA Banner ── */
+.prod-cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 2.8rem;
+  background: linear-gradient(135deg, rgba(79,142,247,0.08) 0%, rgba(109,94,246,0.08) 100%);
+  border: 1px solid rgba(79,142,247,0.18);
+  border-radius: var(--radius, 16px);
+  flex-wrap: wrap;
+}
+
+.prod-cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--fg, #e8f0fe);
+  margin: 0 0 0.4rem;
+}
+
+.prod-cta-sub {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted, #8a9bb5);
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ── Responsive ── */
+
+/* Tablet: 768px–1100px — tighten the grid */
+@media (max-width: 1100px) {
+  .prod-main-single {
+    gap: 2rem;
+    padding: 3rem 5%;
+  }
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .prod-main-single {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 2rem;
+    padding: 2rem 5%;
+  }
+
+  /* Image goes above content on mobile */
+  .prod-image-wrap {
+    order: -1;
+    align-self: auto;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .prod-landscape-img {
+    height: auto;               /* scale by width on mobile */
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .prod-roles {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-name {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .prod-features {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-hero {
+    padding: calc(var(--nav-h, 72px) + 1.5rem) 5% 2rem;
+  }
+
+  .prod-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .prod-landscape-img {
+    border-radius: 8px;
+  }
+}

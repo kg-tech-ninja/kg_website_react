@@ -1,95 +1,203 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import {
+  ArrowRight, Users, GraduationCap, ShieldCheck,
+  Video, Calendar, Award, BarChart3, MessageSquare, Bell
+} from 'lucide-react';
+import './ProductsPage.css';
 
-const products = [
+/* ─── Feature list ─── */
+const features = [
+  { icon: <Video size={18} />,         color: '#4f8ef7', label: 'Live session links'                  },
+  { icon: <Calendar size={18} />,      color: '#6d5ef6', label: '1:1 booking system'                  },
+  { icon: <MessageSquare size={18} />, color: '#4f8ef7', label: 'Academic support & query resolution'  },
+  { icon: <Award size={18} />,         color: '#6d5ef6', label: 'Certificate downloads'                },
+  { icon: <BarChart3 size={18} />,     color: '#4f8ef7', label: 'Weekly performance tracking'          },
+  { icon: <Bell size={18} />,          color: '#6d5ef6', label: 'Admin alerts & smart reminders'       },
+];
+
+/* ─── Role cards ─── */
+const roles = [
   {
-    name: 'KG Flow',
-    tag: 'Workflow Automation',
+    icon: <ShieldCheck size={26} />,
     color: '#4f8ef7',
-    desc: 'Automate repetitive business workflows with a no-code drag-and-drop builder. Integrate 200+ tools out of the box.',
-    features: ['Visual workflow builder', '200+ integrations', 'Real-time analytics', 'Team collaboration'],
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=380&fit=crop',
-    status: 'Live',
+    title: 'Admin',
+    desc: 'Full control over users, content, reminders, support tickets, and reports — everything visible from one powerful dashboard.',
   },
   {
-    name: 'KG Shield',
-    tag: 'Cybersecurity Suite',
-    color: '#00d4aa',
-    desc: 'Enterprise-grade security monitoring, threat detection, and compliance management on one unified dashboard.',
-    features: ['Threat intelligence', 'SIEM integration', 'Compliance reports', 'Zero-trust access'],
-    img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=380&fit=crop',
-    status: 'Beta',
+    icon: <Users size={26} />,
+    color: '#6d5ef6',
+    title: 'Candidate',
+    desc: 'Access live sessions, book mentors, raise queries, download certificates, and monitor your weekly learning progress.',
   },
   {
-    name: 'KG Insight',
-    tag: 'Business Intelligence',
-    color: '#7c5cfc',
-    desc: 'Turn raw data into boardroom-ready insights with AI-powered analytics and beautiful, shareable dashboards.',
-    features: ['AI-powered reports', 'Custom dashboards', 'Multi-source connectors', 'Scheduled alerts'],
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop',
-    status: 'Coming Soon',
+    icon: <GraduationCap size={26} />,
+    color: '#4f8ef7',
+    title: 'Faculty',
+    desc: 'Manage class schedules, respond to student queries, share resources, and track attendance — all in one place.',
   },
 ];
 
+
+
+/* ─── Page ─── */
 const ProductsPage = () => (
   <div style={{ minHeight: '100vh' }}>
-    {/* Hero */}
-    <div style={{ padding:'calc(var(--nav-h) + 2rem) 0 2.5rem', background:'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,92,252,0.1) 0%, transparent 70%)', borderBottom:'1px solid var(--border)' }}>
+
+    {/* ── Hero ── */}
+    <div className="prod-hero">
       <div className="container" style={{ textAlign: 'center' }}>
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="section-tag" style={{ margin: '0 auto 1.25rem' }}>SaaS Products</div>
-          <h1 className="section-title" style={{ fontSize: 'clamp(2.5rem,5vw,4rem)', marginBottom: '1rem' }}>
-            Software Built for <span className="gradient-text">Modern Teams</span>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+          <div className="section-tag" style={{ margin: '0 auto 1.25rem' }}>
+            Live Product · Client Success
+          </div>
+          <h1 className="section-title" style={{ fontSize: 'clamp(2.2rem,5vw,3.6rem)', marginBottom: '1rem' }}>
+            From Manual Chaos to a{' '}
+            <span className="gradient-text">Centralised Hub</span>
           </h1>
-          <p className="section-sub" style={{ margin: '0 auto 2.5rem' }}>
-            Our proprietary SaaS products help businesses automate workflows, secure data, and unlock intelligence at scale.
+          <p className="section-sub" style={{ maxWidth: 640, margin: '0 auto' }}>
+            We designed and shipped a fully centralised platform for a course provider who was drowning
+            in spreadsheets, group chats, and manual follow-ups. One platform. Every role. Zero wasted effort.
           </p>
         </motion.div>
       </div>
     </div>
 
-    {/* Products List */}
-    <div className="container" style={{ padding: '2.5rem 5%', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-      {products.map((p, i) => (
-        <motion.div
-          key={i}
-          className="card"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: i * 0.1 }}
-          style={{ display: 'grid', gridTemplateColumns: i % 2 === 0 ? '1fr 1fr' : '1fr 1fr', gap: '3rem', alignItems: 'center', padding: '2.5rem' }}
-        >
-          {/* Text (alternate order) */}
-          <div style={{ order: i % 2 !== 0 ? 2 : 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <span className="section-tag" style={{ color: p.color, background: `${p.color}15`, border: `1px solid ${p.color}25` }}>{p.tag}</span>
-              <span className="chip" style={{ fontSize: '0.75rem', background: p.status === 'Live' ? 'rgba(0,212,170,0.1)' : p.status === 'Beta' ? 'rgba(79,142,247,0.1)' : 'rgba(246,201,14,0.1)', color: p.status === 'Live' ? '#00d4aa' : p.status === 'Beta' ? '#4f8ef7' : '#f6c90e', borderColor: 'transparent' }}>{p.status}</span>
-            </div>
-            <h2 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }}>{p.name}</h2>
-            <p style={{ color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>{p.desc}</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '2rem' }}>
-              {p.features.map((f, j) => (
-                <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--muted)', fontSize: '0.9rem' }}>
-                  <CheckCircle size={16} color={p.color}/> {f}
-                </div>
-              ))}
-            </div>
-            <Link to="/contact" className="btn-wavy">
-              <span>{p.status === 'Coming Soon' ? 'Join Waitlist' : 'Get Started'}</span> <ArrowRight size={16}/>
-            </Link>
-          </div>
+    {/* ── Main product section ── */}
+    <div className="container prod-main-single">
 
-          {/* Image */}
-          <div style={{ order: i % 2 !== 0 ? 1 : 2 }}>
-            <img src={p.img} alt={p.name} style={{ width: '100%', borderRadius: 'var(--radius)', objectFit: 'cover', height: '280px', border: '1px solid var(--border)' }}/>
-          </div>
-        </motion.div>
-      ))}
+      {/* Copy — left */}
+      <motion.div
+        className="prod-copy-center"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        {/* Badges moved here so image can top-align with EduHub title */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+          <span className="section-tag" style={{ color: '#4f8ef7', background: 'rgba(79,142,247,0.1)', border: '1px solid rgba(79,142,247,0.2)', margin: 0 }}>
+            EdTech Platform
+          </span>
+          <span className="chip" style={{ fontSize: '0.75rem', background: 'rgba(34,197,94,0.1)', color: '#4ade80', borderColor: 'transparent' }}>
+            ✦ Live &amp; Deployed
+          </span>
+        </div>
+
+        <h2 className="prod-name">EduHub</h2>
+        <p className="prod-tagline">Your institution's command centre.</p>
+
+        <p className="prod-desc">
+          Our client — a growing course provider — was managing live classes, mentor bookings, student
+          queries, and certifications entirely through manual effort. We built <strong>EduHub</strong>:
+          a role-based, centralised platform that gives every stakeholder their own intelligent dashboard,
+          replacing scattered tools with a single source of truth.
+        </p>
+
+        <p className="prod-desc" style={{ marginTop: '0.75rem' }}>
+          Hub is your single platform to access everything your institution runs on:
+        </p>
+
+        {/* Feature grid */}
+        <div className="prod-features">
+          {features.map((f, i) => (
+            <div key={i} className="prod-feature-item">
+              <span style={{ color: f.color, flexShrink: 0 }}>{f.icon}</span>
+              <span>{f.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+          <Link to="/contact" className="btn-wavy">
+            <span>Build something like this</span> <ArrowRight size={16} />
+          </Link>
+        </div>
+      </motion.div>
+
+      {/* Landscape image — full width */}
+      <motion.div
+        className="prod-image-wrap"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.75, delay: 0.15 }}
+      >
+        <img
+          src="/eduhub_mockup_1784134109726.png"
+          alt="EduHub — centralised platform for Admin, Candidate and Faculty"
+          className="prod-landscape-img"
+        />
+      </motion.div>
     </div>
+
+    {/* ── Role cards ── */}
+    <div className="container prod-roles-section">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ textAlign: 'center', marginBottom: '2.5rem' }}
+      >
+        <h2 className="section-title" style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', marginBottom: '0.75rem' }}>
+          Three Logins. <span className="gradient-text">One Ecosystem.</span>
+        </h2>
+        <p className="section-sub" style={{ maxWidth: 540, margin: '0 auto' }}>
+          Every user sees exactly what they need — no clutter, no confusion. Role-based access keeps the
+          platform secure, focused, and fast for everyone.
+        </p>
+      </motion.div>
+
+      <div className="prod-roles">
+        {roles.map((r, i) => (
+          <motion.div
+            key={i}
+            className="card prod-role-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: i * 0.12 }}
+          >
+            <div
+              className="prod-role-icon"
+              style={{ color: r.color, background: `${r.color}15`, border: `1px solid ${r.color}25` }}
+            >
+              {r.icon}
+            </div>
+            <h3 className="prod-role-title">{r.title}</h3>
+            <p className="prod-role-desc">{r.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+
+    {/* ── CTA banner ── */}
+    <div className="container" style={{ padding: '0 5% 5rem' }}>
+      <motion.div
+        className="card prod-cta-banner"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div>
+          <h3 className="prod-cta-title">Got a similar challenge?</h3>
+          <p className="prod-cta-sub">
+            If your team is doing manually what software should handle — scheduling, tracking, support,
+            certifications — we'll build you the system that changes that.
+          </p>
+        </div>
+        <Link to="/contact" className="hero-btn hero-btn--primary" style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>
+          <span>Let's talk</span> <ArrowRight size={16} className="hero-btn__arrow" />
+        </Link>
+      </motion.div>
+    </div>
+
   </div>
 );
 
 export default ProductsPage;
+
+
