@@ -135,16 +135,40 @@
   /* ── Products page — "Let's talk" primary button shouldn't be pinned ── */
   .prod-cta-banner .hero-btn { width: 100%; justify-content: center; }
 
-  /* ── Hero — lighten for smooth mobile scrolling ──
-     The hero layers many continuously-animating, blurred/composited elements.
-     On phones that compounds into scroll jank/"stutter". Drop the faint
-     decorative layers and soften the heavy blur so scrolling stays smooth.
-     (Scroll parallax is already disabled in JS on mobile.) The signature
-     topology visual + aurora glow are kept. Desktop is untouched. */
+  /* ── Hero — make it smooth to scroll on phones ──
+     The hero stacked many always-animating, blurred, and backdrop-filtered
+     layers. On mobile that made scrolling sluggish. So on phones we (a) drop
+     the faint decorative layers, (b) freeze the continuously-repainting
+     animations, and (c) remove backdrop-filter — the biggest cost, since it
+     re-blurs the page behind every glass chip on each scroll frame. The
+     composition looks the same; it just doesn't animate. Desktop is untouched. */
   .hero-particles,
   .hero-network { display: none; }
 
+  /* Freeze ONLY the full-viewport, paint-heavy animations — the big blurred
+     aurora drift and the grid pan repaint the whole screen every frame, which
+     is what fought scrolling. The topology keeps animating (orbit, sonar rings,
+     float, glow, flowing packets) — those run on the compositor and don't hurt
+     scroll now that backdrop-filter is gone, so the visual stays alive. */
+  .hero-aurora,
+  .hero-grid { animation: none !important; }
+
   .hero-aurora { filter: blur(55px); }
+
+  /* Kill backdrop-filter (re-samples the backdrop every frame). Nudge the
+     backgrounds a touch more opaque so chips still read as solid glass. */
+  .tp-node,
+  .tp-core,
+  .tp-status,
+  .hero-eyebrow,
+  .hero-btn--glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .tp-node,
+  .tp-status { background: rgba(22, 28, 44, 0.92); }
+  .hero-eyebrow { background: rgba(79, 142, 247, 0.16); }
+  .hero-btn--glass { background: rgba(255, 255, 255, 0.08); }
 
   /* Safety net: keep hero content fully visible even if a desktop→mobile
      resize left a stale parallax transform on the wrapper. */
@@ -202,6 +226,10 @@
 @media (max-width: 380px) {
   .kg-nav__logo-img { height: 30px; }
   .kg-nav__cta { padding: 0.38rem 0.7rem; }
+
+  /* Keep both hero CTAs on one row even on the narrowest phones */
+  .hero-cta { gap: 0.5rem; }
+  .hero-cta .hero-btn { padding: 0.8rem 0.5rem; font-size: 0.82rem; gap: 0.35rem; }
 }
 
 
@@ -211,9 +239,15 @@
 @media (max-width: 480px) {
   .container { padding-left: 1rem; padding-right: 1rem; }
 
-  /* Buttons: full-width primary CTAs read cleanly and are easy to tap */
-  .hero-cta { width: 100%; }
-  .hero-cta .hero-btn { flex: 1 1 100%; justify-content: center; }
+  /* Hero CTAs sit SIDE BY SIDE (equal halves), not stacked */
+  .hero-cta { width: 100%; flex-wrap: nowrap; gap: 0.6rem; }
+  .hero-cta .hero-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 0.85rem 0.7rem;
+    font-size: 0.88rem;
+  }
 
   /* Home service cards a touch tighter */
   .service-card { padding: 1.5rem; }
