@@ -156,12 +156,8 @@ export default function SystemTopology() {
         </div>
       </div>
 
-      {/* status chip */}
-      <div className="tp-status">
-        <span className="tp-status__dot" />
-        <span className="tp-status__val">Secure</span>
-        <span className="tp-status__label">by default</span>
-      </div>
+
+
     </div>
   );
 }

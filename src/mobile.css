@@ -1,0 +1,191 @@
+/* ══════════════════════════════════════════════════════════════════════
+   mobile.css — MOBILE-ONLY responsive layer
+   ----------------------------------------------------------------------
+   Every rule in this file lives inside a `max-width` or a coarse-pointer
+   (`hover: none`) media query. Nothing here applies to a desktop / fine-
+   pointer viewport, so the desktop design stays exactly as it was.
+
+   Imported LAST in main.jsx so these rules win the cascade on mobile
+   without needing to touch any component stylesheet.
+   ══════════════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   1. TOUCH DEVICES — kill cursor / hover-driven motion
+   ----------------------------------------------------------------------
+   A finger has no cursor, and `:hover` "sticks" after a tap on touch
+   screens. So we (a) freeze the hero's cursor-parallax and (b) drop the
+   hover-lift transforms that would otherwise leave a card/button stuck
+   in its raised state after being tapped. Tap/active feedback still works.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (hover: none) {
+  /* Hero topology cursor-parallax — never react to touch drags */
+  .tp-parallax { transform: none !important; }
+
+  /* Hover-lift transforms would stick after a tap — keep these flat.
+     (These only ever fired on real hover, which touch can falsely trigger.) */
+  .card:hover,
+  .service-card:hover,
+  .service-card:hover .srv-icon,
+  .svc-card:hover,
+  .svc-card:hover .svc-card__icon,
+  .case-card:hover,
+  .case-card:hover .case-img,
+  .prod-role-card:hover,
+  .related-card:hover,
+  .tp-node:hover,
+  .hero-btn:hover,
+  .svc-btn:hover,
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .btn-ghost:hover,
+  .btn-wavy:hover,
+  .kg-nav__cta:hover,
+  .social-btn:hover,
+  .cs-wa:hover {
+    transform: none !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   2. FOUNDATIONS — phones & small tablets (≤768px)
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Never allow a stray element to create sideways scroll */
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  /* Tighter page gutters so content isn't cramped against the edges */
+  .container { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+  /* Media never overflows its column */
+  img, svg, video { max-width: 100%; height: auto; }
+
+  /* Calmer vertical rhythm — desktop's tall section paddings feel huge on a phone */
+  .services-section,
+  .why-us,
+  .process-section,
+  .testimonials-section,
+  .cases-preview { padding-top: 3.25rem; padding-bottom: 3.25rem; }
+
+  .services-section .section-header { margin-bottom: 2.5rem; }
+  .divider { margin: 3rem 0; }
+
+  /* Section intros read better a touch smaller / centred on phones */
+  .section-sub { font-size: 1rem; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3. COMPONENT FIXES — ≤768px
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Home · Services grid: comfortable single column already handled at
+        600px in Services.css; just calm the section padding here. ── */
+
+  /* ── ServicesPage grid — base uses minmax(340px,1fr) which overflows on
+        phones narrower than ~404px. Force one clean column + tighter gutters. */
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .svc-cta { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .svc-card { padding: 1.5rem; }
+
+  /* Standalone CTA rows: full-width, centred, tappable buttons */
+  .svc-hero__cta { width: 100%; }
+  .svc-hero__cta .svc-btn { flex: 1 1 100%; justify-content: center; }
+  .svc-cta__btn { width: 100%; justify-content: center; }
+
+  /* ── About page — the "Our Story" grid is an inline 1fr 1fr; stack it. ── */
+  .about-story {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .about-story .about-media-img { height: 280px !important; }
+
+  /* ── Footer — the CTA banner: stack copy above the button, full-width CTA ── */
+  .footer-cta-banner { padding: 2.5rem 1.25rem; }
+  .footer-cta-inner { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .footer-cta-inner .btn-wavy { width: 100%; justify-content: center; }
+  .footer-cta-title { font-size: 1.35rem; }
+  .footer-main { padding: 3rem 1.25rem; gap: 2.25rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.85rem; padding: 1.5rem 1.25rem; }
+  .footer-bottom-links { gap: 1.25rem; flex-wrap: wrap; }
+
+  /* ── Detail pages — CTA action buttons full width so they don't crowd ── */
+  .detail-cta-actions { width: 100%; }
+  .detail-cta-actions > * { flex: 1 1 100%; justify-content: center; text-align: center; }
+
+  /* ── Products page — "Let's talk" primary button shouldn't be pinned ── */
+  .prod-cta-banner .hero-btn { width: 100%; justify-content: center; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   3b. CONTACT PAGE — no horizontal scroll on mobile
+   ----------------------------------------------------------------------
+   On phones the page becomes vertically scrollable (overflow:auto). The
+   480px orbiting spotlight glow is wider than the viewport and animates
+   sideways, which spawns a horizontal scrollbar. Clip the X axis (keep the
+   Y scroll) so the form sits perfectly centred with no sideways drift.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .contact-page { overflow-x: hidden; overflow-y: auto; }
+  /* Belt-and-braces: keep the glow from ever reaching past the screen edge */
+  .contact-glow { max-width: 100vw; }
+  .contact-inner { width: 100%; max-width: 100%; }
+
+  /* Keep Country-code + Phone on ONE row (matches desktop). A whole line for
+     a 2–4 char code wastes space — narrow code column, phone takes the rest. */
+  .cf-row--phone {
+    grid-template-columns: 84px 1fr;
+    gap: 1rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   4. NAVIGATION — keep the open mobile menu usable on short screens (≤900px)
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* If every accordion is expanded on a small screen the menu can exceed the
+     viewport — let it scroll instead of hiding items off-screen. */
+  .kg-nav__mobile {
+    max-height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   5. SMALL PHONES (≤480px) — final tightening
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .container { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Buttons: full-width primary CTAs read cleanly and are easy to tap */
+  .hero-cta { width: 100%; }
+  .hero-cta .hero-btn { flex: 1 1 100%; justify-content: center; }
+
+  /* Home service cards a touch tighter */
+  .service-card { padding: 1.5rem; }
+
+  /* Trust metrics wrap nicely under the hero copy */
+  .hero-trust { gap: 0.9rem 1.1rem; justify-content: center; }
+
+  /* Process / value number sizing */
+  .process-num { font-size: 2.1rem; }
+
+  /* Detail-page hero: shorter so the title sits closer to comfortable */
+  .detail-hero { height: 320px; }
+  .detail-title { letter-spacing: -0.5px; }
+
+  /* About story image a bit shorter still on the smallest screens */
+  .about-story .about-media-img { height: 230px !important; }
+
+  /* Footer socials centre-align feels intentional on narrow screens */
+  .footer-desc { max-width: 100%; }
+}

@@ -20,9 +20,10 @@ const Hero = () => {
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  /* Single pointer handler drives the cursor glow + parallax via CSS vars — no re-renders. */
+  /* Single pointer handler drives the cursor glow + parallax via CSS vars — no re-renders.
+     Ignored for touch/coarse pointers so the visual never shifts on mobile. */
   const onPointerMove = useCallback((e) => {
-    if (reduce) return;
+    if (reduce || e.pointerType === 'touch') return;
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();

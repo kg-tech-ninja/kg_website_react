@@ -29,7 +29,7 @@ const AboutPage = () => (
     </div>
 
     {/* Story */}
-    <div className="container" style={{ padding: '2.5rem 5%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+    <div className="container about-story" style={{ padding: '2.5rem 5%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
       <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
         <div className="section-tag" style={{ marginBottom: '1.25rem' }}>Our Story</div>
         <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>A Fresh Start, Built on <span className="gradient-text">Real Craft</span></h2>
@@ -45,7 +45,7 @@ const AboutPage = () => (
         <Link to="/contact" className="btn-wavy"><span>Work with us</span> <ArrowRight size={16}/></Link>
       </motion.div>
       <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=480&fit=crop" alt="Focused engineering work" style={{ width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', height: '380px', objectFit: 'cover' }}/>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=480&fit=crop" alt="Focused engineering work" className="about-media-img" style={{ width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', height: '380px', objectFit: 'cover' }}/>
       </motion.div>
     </div>
 
