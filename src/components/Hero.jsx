@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from 'react';
+import React, { useRef, useMemo, useCallback, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -15,6 +15,18 @@ const Hero = () => {
   const ref = useRef(null);
   const raf = useRef(0);
   const reduce = useReducedMotion();
+
+  /* On phones the scroll-linked parallax fights the browser URL-bar resize and
+     the fade can make the hero jump/stutter — so we bind it on desktop only. */
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -105,7 +117,7 @@ const Hero = () => {
       </div>
 
       {/* ═══ Content ═══ */}
-      <motion.div className="hero-inner" style={{ y: contentY, opacity: contentOpacity }}>
+      <motion.div className="hero-inner" style={isMobile ? undefined : { y: contentY, opacity: contentOpacity }}>
         <div className="hero-grid-cols">
           {/* ── Left: copy ── */}
           <div className="hero-copy">
